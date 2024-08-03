@@ -10,20 +10,30 @@ jobs:
 
       - name: Add permission to file setup_server
         run: chmod +x ./setup_server.sh
-        
+
       - name: Exec script file setup_server
         run: ./setup_server.sh
   build:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: chmod +x ./build_server.sh
-      - run: ./build_server.sh
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Add permission to file build_server
+        run: chmod +x ./build_server.sh
+        
+      - name: Exec script file build_server
+        run: ./build_server.sh
   test:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: chmod +x ./test_server.sh
-      - run: ./test_server.sh
+    steps:      
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Add permission to file test_server
+        run: chmod +x ./test_server.sh
+        
+      - name: Exec script file test_server
+        run: ./test_server.sh
