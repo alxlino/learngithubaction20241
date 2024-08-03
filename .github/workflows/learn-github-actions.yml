@@ -2,24 +2,20 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  # checkout:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
   setup:
-    # needs: checkout
     runs-on: ubuntu-latest
     steps:
-      # - run: ./setup_server.sh
       - uses: actions/checkout@v4
-      - run: ls -ltr
+      - run: ./setup_server.sh
   build:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: ./build_server.sh
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: ./test_server.sh
