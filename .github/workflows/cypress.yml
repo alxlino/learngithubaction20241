@@ -1,5 +1,5 @@
 name: Cypress Tests Run on Pipeline
-run-name: GitHub Actions using Cypress with Multiple Browser
+run-name: GitHub Actions using Cypress with Multiple Browser and Upload Artifacts
 on: [push]
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
       
       - name: Npm Install
         run: npm install
@@ -30,9 +30,27 @@ jobs:
       
       - name: Run Cypress with Chrome
         run: npx cypress run --browser chrome
+
+      - name: Upload artifact Chrome
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
       
       - name: Run Cypress with Edge
         run: npx cypress run --browser edge
+
+      - name: Upload artifact Edge
+        uses: actions/upload-artifact@v4
+        with:
+          name: edge-usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
       
       - name: Run Cypress with Firefox
         run: npx cypress run --browser firefox
+
+      - name: Upload artifact Firefox
+        uses: actions/upload-artifact@v4
+        with:
+          name: firefox-usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
