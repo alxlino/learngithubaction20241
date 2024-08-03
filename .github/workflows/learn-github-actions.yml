@@ -1,39 +1,13 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is learning GitHub Actions with Matrix
 on: [push]
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Add permission to file setup_server
-        run: chmod +x ./setup_server.sh
-
-      - name: Exec script file setup_server
-        run: ./setup_server.sh
   build:
-    needs: setup
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16]
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Add permission to file build_server
-        run: chmod +x ./build_server.sh
-        
-      - name: Exec script file build_server
-        run: ./build_server.sh
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:      
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Add permission to file test_server
-        run: chmod +x ./test_server.sh
-        
-      - name: Exec script file test_server
-        run: ./test_server.sh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
