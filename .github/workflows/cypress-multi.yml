@@ -1,0 +1,91 @@
+name: Cypress Tests with Multiple Browsers on Pipeline
+# run-name: GitHub Actions using Cypress with Multiple Browser and Upload Artifacts
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Npm Install
+        run: npm install
+      
+      - name: Run Cypress
+        run: npx cypress run
+
+      - name: Upload Screenshots artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: ./cypress/screenshots
+
+      - name: Upload Video artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
+      
+      - name: Run Cypress with Chrome
+        if: always()
+        run: npx cypress run --browser chrome
+
+      - name: Upload Video artifact Chrome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
+      
+      - name: Upload Screenshots artifact Chrome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-chrome
+          path: ./cypress/screenshots
+      
+      - name: Run Cypress with Edge
+        if: always()
+        run: npx cypress run --browser edge
+
+      - name: Upload Video artifact Edge
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: edge-usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
+
+      - name: Upload Screenshots artifact Edge
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-edge
+          path: ./cypress/screenshots
+      
+      - name: Run Cypress with Firefox
+        if: always()
+        run: npx cypress run --browser firefox
+
+      - name: Upload Video artifact Firefox
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: firefox-usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
+
+      - name: Upload Screenshots artifact Firefox
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-firefox
+          path: ./cypress/screenshots
