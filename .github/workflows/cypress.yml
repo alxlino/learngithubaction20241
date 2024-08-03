@@ -1,5 +1,5 @@
 name: Cypress Tests Run on Pipeline
-# run-name: GitHub Actions using Cypress with Multiple Browser and Upload Artifacts
+run-name: GitHub Actions using Cypress with Multiple Browser and Upload Artifacts
 on: [push]
 
 jobs:
@@ -22,7 +22,14 @@ jobs:
       - name: Run Cypress
         run: npx cypress run
 
-      - name: Upload artifact
+      - name: Upload Screenshots artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: ./cypress/screenshots
+
+      - name: Upload Video artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -30,6 +37,7 @@ jobs:
           path: ./cypress/videos/usuarios.cy.js.mp4
       
       - name: Run Cypress with Chrome
+        if: always()
         run: npx cypress run --browser chrome
 
       - name: Upload Video artifact Chrome
@@ -47,30 +55,36 @@ jobs:
           path: ./cypress/screenshots
       
       - name: Run Cypress with Edge
+        if: always()
         run: npx cypress run --browser edge
 
       - name: Upload Video artifact Edge
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: edge-usuarios.cy.js.mp4
           path: ./cypress/videos/usuarios.cy.js.mp4
 
       - name: Upload Screenshots artifact Edge
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots-edge
           path: ./cypress/screenshots
       
       - name: Run Cypress with Firefox
+        if: always()
         run: npx cypress run --browser firefox
 
       - name: Upload Video artifact Firefox
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: firefox-usuarios.cy.js.mp4
           path: ./cypress/videos/usuarios.cy.js.mp4
 
       - name: Upload Screenshots artifact Firefox
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots-firefox
