@@ -1,5 +1,5 @@
 name: Cypress Tests Run on Pipeline
-run-name: GitHub Actions using Cypress with Multiple Browser and Upload Artifacts
+# run-name: GitHub Actions using Cypress with Multiple Browser and Upload Artifacts
 on: [push]
 
 jobs:
