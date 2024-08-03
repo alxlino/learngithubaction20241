@@ -18,3 +18,8 @@ jobs:
         run: npm install
       - name: Run Cypress
         run: npx cypress run
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
