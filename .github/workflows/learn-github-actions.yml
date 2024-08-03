@@ -6,16 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: chmod +x ./setup_server.sh
       - run: ./setup_server.sh
   build:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: chmod +x ./build_server.sh
       - run: ./build_server.sh
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: chmod +x ./test_server.sh
       - run: ./test_server.sh
