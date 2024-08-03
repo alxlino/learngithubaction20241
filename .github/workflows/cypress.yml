@@ -31,26 +31,44 @@ jobs:
       - name: Run Cypress with Chrome
         run: npx cypress run --browser chrome
 
-      - name: Upload artifact Chrome
+      - name: Upload Video artifact Chrome
         uses: actions/upload-artifact@v4
         with:
           name: chrome-usuarios.cy.js.mp4
           path: ./cypress/videos/usuarios.cy.js.mp4
       
+      - name: Upload Screenshots artifact Chrome
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-chrome
+          path: ./cypress/screenshots
+      
       - name: Run Cypress with Edge
         run: npx cypress run --browser edge
 
-      - name: Upload artifact Edge
+      - name: Upload Video artifact Edge
         uses: actions/upload-artifact@v4
         with:
           name: edge-usuarios.cy.js.mp4
           path: ./cypress/videos/usuarios.cy.js.mp4
+
+      - name: Upload Screenshots artifact Edge
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-edge
+          path: ./cypress/screenshots
       
       - name: Run Cypress with Firefox
         run: npx cypress run --browser firefox
 
-      - name: Upload artifact Firefox
+      - name: Upload Video artifact Firefox
         uses: actions/upload-artifact@v4
         with:
           name: firefox-usuarios.cy.js.mp4
           path: ./cypress/videos/usuarios.cy.js.mp4
+
+      - name: Upload Screenshots artifact Firefox
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-firefox
+          path: ./cypress/screenshots
