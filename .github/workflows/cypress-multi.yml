@@ -23,7 +23,7 @@ jobs:
         run: npx cypress run
 
       - name: Upload Screenshots artifact
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
@@ -48,7 +48,7 @@ jobs:
           path: ./cypress/videos/usuarios.cy.js.mp4
       
       - name: Upload Screenshots artifact Chrome
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots-chrome
@@ -66,7 +66,7 @@ jobs:
           path: ./cypress/videos/usuarios.cy.js.mp4
 
       - name: Upload Screenshots artifact Edge
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots-edge
@@ -84,7 +84,7 @@ jobs:
           path: ./cypress/videos/usuarios.cy.js.mp4
 
       - name: Upload Screenshots artifact Firefox
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots-firefox
