@@ -5,9 +5,14 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: chmod +x ./setup_server.sh
-      - run: ./setup_server.sh
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Add permission to file setup_server
+        run: chmod +x ./setup_server.sh
+        
+      - name: Exec script file setup_server
+        run: ./setup_server.sh
   build:
     needs: setup
     runs-on: ubuntu-latest
