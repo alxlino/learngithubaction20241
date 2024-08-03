@@ -10,7 +10,9 @@ jobs:
     needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - run: ./setup_server.sh
+      - run: |
+          ls -ltr
+          ./setup_server.sh
   build:
     needs: setup
     runs-on: ubuntu-latest
