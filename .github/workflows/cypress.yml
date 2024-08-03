@@ -1,5 +1,5 @@
 name: Cypress Tests Run on Pipeline
-run-name: GitHub Actions using Cypress
+run-name: GitHub Actions using Cypress with Multiple Browser
 on: [push]
 
 jobs:
